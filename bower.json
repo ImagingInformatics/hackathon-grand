@@ -1,0 +1,38 @@
+{
+  "name": "hackathon-grand",
+  "version": "0.0.1",
+  "description": "EMR Client skeleton for SIIM 2015 Hackathon Grand Challenge",
+  "main" : "dist/hackathon-grand.js",
+  "ignore": [
+    "examples",
+    "src",
+    "test",
+    "gruntfile.js",
+    "package.json",
+    "README.md",
+    ".gitignore"
+  ],
+  "dependencies": {
+    "dicomParser" : "~0.8.3",
+    "cornerstone": "~0.7.3",
+    "jquery" : "~2.1.1",
+    "image-jpeg2000" : "~0.0.1"
+  },
+  "devDependencies": {
+  },
+  "license": "MIT",
+  "authors" : ["Chris Hafey"],
+  "homepage": "https://github.com/ImagingInformatics/hackathon-grand",
+  "keywords": [
+    "SIIM",
+    "DICOMWeb",
+    "FHIR",
+    "DICOM",
+    "medical",
+    "imaging"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ImagingInformatics/hackathon-grand.git"
+  }
+}
