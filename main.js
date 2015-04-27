@@ -1,4 +1,4 @@
-var patientSearchUrl = config.fhirRoot + "/Patient?family=SIIM";
+var patientSearchUrl = config.fhirRoot + "/Patient";
 
 function onSuccess(data) {
 
@@ -44,22 +44,24 @@ function onError() {
     alert('error');
 }
 
+function addQueryParam(param) {
+    if(patientSearchUrl.indexOf('?') >= 0) {
+        patientSearchUrl += "&" + param;
+    } else {
+        patientSearchUrl += "?" + param;
+    }
+}
+
 function query() {
 
-    var patientSearchUrl = config.fhirRoot + "/Patient";
     var nameFilter = $('#inputName').val();
     var mrnFilter = $('#inputPatientId').val();
 
     if(nameFilter.length > 0) {
-        patientSearchUrl += "?family=" + nameFilter;
+        addQueryParam('family=' + nameFilter);
     }
     if(mrnFilter.length > 0) {
-        if(nameFilter.length > 0) {
-            patientSearchUrl += "&";
-        } else {
-            patientSearchUrl += "?";
-        }
-        patientSearchUrl += "identifier=" + mrnFilter;
+        addQueryParam('identifier=' + mrnFilter);
     }
 
     $('#patientList').empty();
@@ -72,12 +74,11 @@ function query() {
         success: onSuccess,
         error: onError
     });
-
-
 }
 
 $(document).ready(function() {
     $('form').submit(function(e) {
+        patientSearchUrl = config.fhirRoot + "/Patient";
        query();
         e.preventDefault();
     });
