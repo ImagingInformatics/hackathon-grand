@@ -76,7 +76,24 @@ function query() {
     });
 }
 
+var isIE9OrBelow = function()
+{
+    return /MSIE\s/.test(navigator.userAgent) && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10;
+}
+
+function isCanvasSupported(){
+    var elem = document.createElement('canvas');
+    return !!(elem.getContext && elem.getContext('2d'));
+}
+
+
 $(document).ready(function() {
+
+    if(isIE9OrBelow() || isCanvasSupported() === false) {
+        $('#main').text("This application does not support your web browser, please try using Chrome, Safari, FireFox or IE10+");
+        return;
+    }
+
     $('form').submit(function(e) {
         patientSearchUrl = config.fhirRoot + "/Patient";
        query();
