@@ -53,13 +53,23 @@ module.exports = function(grunt) {
                 dest: '../build/',
                 expand: true,
                 flatten: true
+            },
+            srcjs: {
+                src: [
+                    'src/js/*',
+                ],
+                dest: '../build/',
+                expand: true,
+                flatten: true
             }
+
+
 
 
         },
         watch: {
             scripts: {
-                files: ['src/html/*', 'test/**/*.js'],
+                files: ['src/html/*', 'src/js/*', 'test/**/*.js'],
                 tasks: ['buildAll']
             }
         }
