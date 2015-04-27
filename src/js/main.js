@@ -26,7 +26,11 @@ function onSuccess(data) {
             dob + '</td><td>' +
             '</tr>';
         var patientRowElement = $(patientRow).appendTo('#patientList');
-
+        $(patientRowElement).click(function() {
+            var n = patient.id.lastIndexOf('/');
+            var id = patient.id.substring(n + 1);
+            window.location = "imaging.html?id=" + id;
+        })
     });
 
 

@@ -21,9 +21,17 @@ function loadPatient(patientResourceId, callback) {
 
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
 $(document).ready(function() {
 
-    patientResourceId = "siimjoe";
+    patientResourceId = getParameterByName("id");
     loadPatient(patientResourceId, function() {
         loadTemplate("reportList.html", function(element) {
             $('#reportList').append(element);
