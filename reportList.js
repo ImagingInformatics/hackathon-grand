@@ -1,8 +1,26 @@
+function getReportDate(report) {
+    return report.issued || '';
+}
+
+function getAccessionNumber(report) {
+    if(report.identifier && report.identifier.value) {
+        return report.identifier.value;
+    }
+    return "";
+}
+
+function getReportDescription(report) {
+    if(report.name && report.name.text) {
+        return report.name.text;
+    }
+    return "";
+}
+
 function reportListQuery() {
 
     $('#reportListTable').empty();
 
-    var reportListQueryUrl = fhirRoot + "/DiagnosticReport?subject=Patient/" + patientResourceId;
+    var reportListQueryUrl = config.fhirRoot + "/DiagnosticReport?subject=Patient/" + patientResourceId;
 
     $.ajax({
         url: reportListQueryUrl,
@@ -12,9 +30,9 @@ function reportListQuery() {
         success: function(data) {
             console.log(data);
             data.entry.forEach(function(report) {
-                var dateTime = report.content.issued;
-                var text = report.content.name.text;
-                var acc = report.content.identifier ? report.content.identifier.value : '';
+                var dateTime = getReportDate(report.content);
+                var text = getReportDescription(report.content);
+                var acc = getAccessionNumber(report.content);
                 var reportRow = '<tr><td>' +
                     dateTime + '</td><td>' +
                     acc +'</td><td>' +

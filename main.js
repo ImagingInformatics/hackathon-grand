@@ -1,13 +1,4 @@
-var fhirRoot = "http://fhir.hackathon.siim.org/fhir";
-var patientSearchUrl = fhirRoot + "/Patient?family=SIIM";
-
-function nameToString(name) {
-    var family = name.family ? name.family[0] : '';
-    var given = name.given ? name.given[0] : '';
-
-    return family + ", " + given;
-}
-
+var patientSearchUrl = config.fhirRoot + "/Patient?family=SIIM";
 
 function onSuccess(data) {
 
@@ -16,9 +7,9 @@ function onSuccess(data) {
 
     data.entry.forEach(function(patient) {
         var patientName = nameToString(patient.content.name[0]);
-        var pid = '';
-        var gender = '';
-        var dob = '';
+        var pid = getMRN(patient.content);
+        var gender = getGender(patient.content);
+        var dob = getDOB(patient.content);
         var patientRow = '<tr><td>' +
             patientName +'</td><td>' +
             pid + '</td><td>' +
