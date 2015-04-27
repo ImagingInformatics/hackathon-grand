@@ -1,7 +1,6 @@
 var fhirRoot = "http://fhir.hackathon.siim.org/fhir";
 var patientSearchUrl = fhirRoot + "/Patient?family=SIIM";
 
-
 function nameToString(name) {
     var family = name.family ? name.family[0] : '';
     var given = name.given ? name.given[0] : '';
@@ -27,7 +26,11 @@ function onSuccess(data) {
             dob + '</td><td>' +
             '</tr>';
         var patientRowElement = $(patientRow).appendTo('#patientList');
-
+        $(patientRowElement).click(function() {
+            var n = patient.id.lastIndexOf('/');
+            var id = patient.id.substring(n + 1);
+            window.location = "imaging.html?id=" + id;
+        })
     });
 
 
