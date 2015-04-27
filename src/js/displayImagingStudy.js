@@ -1,7 +1,3 @@
-function getUid(uid) {
-    return uid.substring(8);
-}
-
 function addImage(imagingStudy, series, instance) {
     if(config.imageRenderMode === 'client') {
         addImageClient(imagingStudy, series, instance);
@@ -16,6 +12,10 @@ function displayImagingStudy(imagingStudy) {
 
     // create a thumbnail for each display set
     imagingStudy.series.forEach(function(series) {
+        // Skip over PR, KO and SR (for now)
+        if(series.modality === 'PR' || series.modality == 'KO' || series.modalty == 'SR') {
+            return;
+        }
         // TODO: Sort images by instance number so its not random
         var firstImage = series.instance[0];
         addImage(imagingStudy, series, firstImage);

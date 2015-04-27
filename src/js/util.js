@@ -26,3 +26,7 @@ function getDOB(patient) {
     }
     return "";
 }
+
+function getUid(uid) {
+    return uid.substring(8);
+}
