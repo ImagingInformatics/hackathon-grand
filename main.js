@@ -45,6 +45,23 @@ function onError() {
 }
 
 function query() {
+
+    var patientSearchUrl = config.fhirRoot + "/Patient";
+    var nameFilter = $('#inputName').val();
+    var mrnFilter = $('#inputPatientId').val();
+
+    if(nameFilter.length > 0) {
+        patientSearchUrl += "?family=" + nameFilter;
+    }
+    if(mrnFilter.length > 0) {
+        if(nameFilter.length > 0) {
+            patientSearchUrl += "&";
+        } else {
+            patientSearchUrl += "?";
+        }
+        patientSearchUrl += "identifier=" + mrnFilter;
+    }
+
     $('#patientList').empty();
 
     $.ajax({
@@ -60,6 +77,10 @@ function query() {
 }
 
 $(document).ready(function() {
+    $('form').submit(function(e) {
+       query();
+        e.preventDefault();
+    });
 
     query();
 });
