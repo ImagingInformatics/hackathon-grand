@@ -26,8 +26,8 @@ function addImageClient(imagingStudy, series, instance) {
             cornerstoneTools.mouseInput.enable(element);
             cornerstoneTools.mouseWheelInput.enable(element);
             cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
-            //cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
-            //cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
+            cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
+            cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
 
         });
     })
