@@ -33,13 +33,12 @@ $(document).ready(function() {
 
     patientResourceId = getParameterByName("id");
     loadPatient(patientResourceId, function() {
-        loadTemplate("reportList.html", function(element) {
-            $('#reportList').append(element);
-            reportListInit();
-        });
         loadTemplate("reportView.html", function(element) {
             $('#reportView').append(element);
-            reportViewInit();
+            loadTemplate("reportList.html", function(element) {
+                $('#reportList').append(element);
+                reportListInit();
+            });
         });
     });
 

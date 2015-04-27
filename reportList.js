@@ -18,9 +18,12 @@ function reportListQuery() {
                     dateTime +'</td><td>' +
                     text + '</td><td>' +
                     '</tr>';
-                var patientRowElement = $(reportRow).appendTo('#reportListTable');
-
+                var reportRowElement = $(reportRow).appendTo('#reportListTable');
+                $(reportRowElement).click(function() {
+                    reportViewInit(report.id);
+                });
             });
+            reportViewInit(data.entry[0].id);
         },
         error: function() {
         alert('error');
