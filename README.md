@@ -4,7 +4,7 @@ SIIM 2015 Hackathon Grand Challenge
 This repository contains the baseline source code for the SIIM 2015 Hackathon Grand Challenge.  The grand challenge
 is to build a web based EMR client for displaying medical image information using RESTful APIs such as FHIR,
 DICOMweb and SWIM.  This baseline project provides basic functionality for searching FHIR for patients and displaying
-a radiology centric view for the selecte patient.  This radiology centric view includes the list of diagnostic reports
+a radiology centric view for the selected patient.  This radiology centric view includes the list of diagnostic reports
 and corresponding images for that report.  The system uses FHIR API's to search for patients, find diagnostic reports
 and imaging study resources.  Images are displayed using DICOMweb APIs.
 
@@ -52,17 +52,18 @@ Automatically running the build and unit tests after each source change:
 Hacking
 -------
 
-Hacking on this project only requires knowledge of HTML, CSS, JavaScript and jQuery.  The project uses the
+Hacking on this project only requires knowledge of HTML, CSS, JavaScript, jQuery and bootstrap.  The project uses the
 [cornerstone library](https://github.com/chafey/cornerstone) for client side rendering which should make it easier
-to hack new imaging specific functionality.  You can switch to server side rendering via WADO-URI by changing the
-setting in the config.js file.
+to hack new imaging specific functionality.
 
 Want to make this project better?  Here are some things we could use help on:
 
 * Visual Appearance - no effort has been put into the visual design - feel free to make it look better!  Just make sure
   you don't work against the design of bootstrap
 * TODO's - There are various TODO's sprinkled throughout the code - find one and fix it!
+* Add more powerful search functionality to the patient search screen
 * Adding more info from FHIR (e.g. Allergies, FamilyHistory, Medications, etc)
 
 NOTE: Please avoid adding dependencies on other third party libraries such as angular, etc.  We want to keep the
-learning curve as low as possible to make it easy to understand and start hacking!
+learning curve as low as possible to make it easy for people to get started hacking!
+
