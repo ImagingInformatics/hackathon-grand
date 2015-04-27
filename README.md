@@ -8,6 +8,7 @@ Goal: Provide a baseline system that can be extended to support the development 
 Requirements
 ------------
 
+* Basic patient list with searching
 * Use DICOMWeb API
 * Use FHIR API
 * Display report and the images at the same time
@@ -33,8 +34,14 @@ Install bower dependencies
 
 > bower install
 
+Building and Hacking
+--------------------
+
+The gruntfile will generate the build output in ../build.  You can use any http server to
+serve up that folder (I use [live-server](https://github.com/tapio/live-server))
+
 Running the build:
-> grunt
+> grunt --force
 
 Automatically running the build and unit tests after each source change:
 > grunt watch
