@@ -14,8 +14,10 @@ function reportListQuery() {
             data.entry.forEach(function(report) {
                 var dateTime = report.content.issued;
                 var text = report.content.name.text;
+                var acc = report.content.identifier ? report.content.identifier.value : '';
                 var reportRow = '<tr><td>' +
-                    dateTime +'</td><td>' +
+                    dateTime + '</td><td>' +
+                    acc +'</td><td>' +
                     text + '</td><td>' +
                     '</tr>';
                 var reportRowElement = $(reportRow).appendTo('#reportListTable');
