@@ -1,9 +1,8 @@
-var fhirRoot = "http://fhir.hackathon.siim.org/fhir";
 var patient = undefined;
 var patientResourceId;
 
 function loadPatient(patientResourceId, callback) {
-    var patientUrl = "http://fhir.hackathon.siim.org/fhir/Patient/" + patientResourceId;
+    var patientUrl = config.fhirRoot + "/Patient/" + patientResourceId;
 
     $.ajax({
         url: patientUrl,

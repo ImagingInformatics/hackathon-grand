@@ -2,7 +2,7 @@ function reportListQuery() {
 
     $('#reportListTable').empty();
 
-    var reportListQueryUrl = fhirRoot + "/DiagnosticReport?subject=Patient/" + patientResourceId;
+    var reportListQueryUrl = config.fhirRoot + "/DiagnosticReport?subject=Patient/" + patientResourceId;
 
     $.ajax({
         url: reportListQueryUrl,

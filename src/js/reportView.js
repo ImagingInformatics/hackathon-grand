@@ -1,33 +1,39 @@
 function getUid(uid) {
     return uid.substring(8);
 }
+
+function addImage(imagingStudy, series, instance) {
+    var studyUid = getUid(imagingStudy.uid);
+    var seriesUid = getUid(series.uid);
+    var instanceUid = getUid(instance.uid);
+    loadTemplate('image.html', function(imageElement)
+    {
+        $('#imageList').append(imageElement);
+        var imageIdRoot = config.wadoUriRoot.replace('http', "dicomweb");
+        var imageId = imageIdRoot + '?requestType=WADO&studyUID=' + studyUid + '&seriesUID=' + seriesUid + '&objectUID=' + instanceUid + "&contentType=application%2Fdicom";
+        var element = imageElement.get(0);
+        cornerstone.enable(element);
+        cornerstone.loadImage(imageId).then(function(image) {
+            cornerstone.displayImage(element, image);
+        });
+    })
+
+}
+
 function displayImagingStudy(imagingStudy) {
 
     if(imagingStudy.series.length === 0) {
         return;
     }
-    var studyUid = getUid(imagingStudy.uid);
+    // TODO: add logic to display imaging studies - for now just display the first image in the first series
     var firstSeries = imagingStudy.series[0];
-    var seriesUid = getUid(firstSeries.uid);//"1.3.6.1.4.1.14519.5.2.1.7777.9002.209790382569215452249761599322";
     var firstImage = firstSeries.instance[0];
-    var instanceUid = getUid(firstImage.uid);// "1.3.6.1.4.1.14519.5.2.1.7777.9002.218501516022520858633325180946";
-    loadTemplate('image.html', function(imageElement)
-    {
-        $('#imageList').append(imageElement);
-        var imageId = 'dicomweb://vna.hackathon.siim.org/dcm4chee-arc/wado/DCM4CHEE?requestType=WADO&studyUID=' + studyUid + '&seriesUID=' + seriesUid + '&objectUID=' + instanceUid + "&contentType=application%2Fdicom";
-        var element = imageElement.get(0);//document.getElementById('dicomImage');
-        cornerstone.enable(element);
-        cornerstone.loadImage(imageId).then(function(image) {
-            cornerstone.displayImage(element, image);
-        });
-
-    })
-
+    addImage(imagingStudy, firstSeries, firstImage);
 }
 
 function loadImagingStudy(acc) {
     // TODO: include patient as search criteria in case of acc collisions
-    var imagingStudyQueryUrl = fhirRoot + "/ImagingStudy?accession=" + acc;
+    var imagingStudyQueryUrl = config.fhirRoot + "/ImagingStudy?accession=" + acc;
     $.ajax({
         url: imagingStudyQueryUrl,
         headers: {
@@ -38,6 +44,8 @@ function loadImagingStudy(acc) {
             if(data.entry.length ===0) {
                 return;
             }
+            // TODO: Need logic to figure out which ImagingStudy to use as there may be more than one (key images, full study, etc)
+            // For now we just pick the first one
             var imagingStudy = data.entry[0];
             displayImagingStudy(imagingStudy.content);
         },

@@ -1,5 +1,4 @@
-var fhirRoot = "http://fhir.hackathon.siim.org/fhir";
-var patientSearchUrl = fhirRoot + "/Patient?family=SIIM";
+var patientSearchUrl = config.fhirRoot + "/Patient?family=SIIM";
 
 function nameToString(name) {
     var family = name.family ? name.family[0] : '';
