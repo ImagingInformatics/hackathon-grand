@@ -3,6 +3,8 @@ SIIM 2015 Hackathon Grand Challenge
 
 Goal: Provide a baseline system that can be extended to support the development of creative new ideas
 
+[Click here to iew this application live](http://imaginginformatics.github.io/hackathon-grand/)
+
 Requirements
 ------------
 
