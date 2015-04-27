@@ -76,7 +76,6 @@ function query() {
     });
 }
 
-<<<<<<< HEAD
 var isIE9OrBelow = function()
 {
     return /MSIE\s/.test(navigator.userAgent) && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10;
@@ -95,9 +94,6 @@ $(document).ready(function() {
         return;
     }
 
-=======
-$(document).ready(function() {
->>>>>>> 3f02047280d8c404864754ad39a6db71afbe3b6d
     $('form').submit(function(e) {
         patientSearchUrl = config.fhirRoot + "/Patient";
        query();
