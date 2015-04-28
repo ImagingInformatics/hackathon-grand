@@ -1,7 +1,14 @@
 function addImage(imagingStudy, series, instance) {
-    if(config.imageRenderMode === 'client') {
+    var client = config.imageRenderMode === 'client';
+    // user server side rendering for large images
+    if(series.modality === 'MG' || series.modality === 'CR')
+    {
+        client = false;
+    }
+
+    if(client) {
         addImageClient(imagingStudy, series, instance);
-    } else if(config.imageRenderMode === 'server') {
+    } else {
         addImageServer(imagingStudy, series, instance);
     }
 }
