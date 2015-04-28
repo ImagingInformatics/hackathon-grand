@@ -56,6 +56,9 @@ Hacking on this project only requires knowledge of HTML, CSS, JavaScript, jQuery
 [cornerstone library](https://github.com/chafey/cornerstone) for client side rendering which should make it easier
 to hack new imaging specific functionality.
 
+I created a [blog post](http://chafey.blogspot.com/2015/04/siim-2015-hackathon-grand-challenge.html) about how
+I built this project that should help explain how things work a bit.
+
 Want to make this project better?  Here are some things we could use help on:
 
 * Visual Appearance - no effort has been put into the visual design - feel free to make it look better!  Just make sure
