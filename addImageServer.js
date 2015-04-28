@@ -6,7 +6,7 @@ function addImageServer(imagingStudy, series, instance) {
     {
         $('#imageList').append(imageElement);
         var imageIdRoot = config.wadoUriRoot;
-        var imageId = imageIdRoot + '?requestType=WADO&studyUID=' + studyUid + '&seriesUID=' + seriesUid + '&objectUID=' + instanceUid;
+        var imageId = imageIdRoot + '?requestType=WADO&studyUID=' + studyUid + '&seriesUID=' + seriesUid + '&objectUID=' + instanceUid + "&columns=256&rows=256";
         var img = $(imageElement).find('img')[0];
         $(img).attr("src", imageId);
     })
