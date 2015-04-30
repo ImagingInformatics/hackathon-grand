@@ -61,6 +61,14 @@ module.exports = function(grunt) {
                 dest: '../build/',
                 expand: true,
                 flatten: true
+            },
+            srccss: {
+                src: [
+                    'src/css/*',
+                ],
+                dest: '../build/',
+                expand: true,
+                flatten: true
             }
 
 
@@ -69,7 +77,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scripts: {
-                files: ['src/html/*', 'src/js/*', 'test/**/*.js'],
+                files: ['src/html/*', 'src/js/*', 'src/css/*', 'test/**/*.js'],
                 tasks: ['buildAll']
             }
         }
