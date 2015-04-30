@@ -16,6 +16,15 @@ function getReportDescription(report) {
     return "";
 }
 
+function reportClicked(reportRowElement, report) {
+    $clicked_tr = $(reportRowElement);
+    $clicked_tr.parent().children().each(function() {
+        $(this).removeClass('highlight')
+    });
+    $clicked_tr.addClass('highlight');
+    reportViewInit(report.id);
+}
+
 function reportListQuery() {
 
     $('#reportListTable').empty();
@@ -29,7 +38,18 @@ function reportListQuery() {
         },
         success: function(data) {
             console.log(data);
-            data.entry.forEach(function(report) {
+            // sort the reports by date
+            data.entry.sort(function (a,b) {
+                    if (a.content.issued < b.content.issued)
+                        return 1;
+                    if (a.content.issued > b.content.issued)
+                        return -1;
+                    return 0;
+                }
+            );
+
+
+            data.entry.forEach(function(report, index) {
                 var dateTime = getReportDate(report.content);
                 var text = getReportDescription(report.content);
                 var acc = getAccessionNumber(report.content);
@@ -39,11 +59,13 @@ function reportListQuery() {
                     text + '</td><td>' +
                     '</tr>';
                 var reportRowElement = $(reportRow).appendTo('#reportListTable');
+                if(index ===0) {
+                    reportClicked(reportRowElement, report);
+                }
                 $(reportRowElement).click(function() {
-                    reportViewInit(report.id);
+                    reportClicked(this, report);
                 });
             });
-            reportViewInit(data.entry[0].id);
         },
         error: function() {
         alert('error');
