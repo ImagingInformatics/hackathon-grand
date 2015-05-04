@@ -4,7 +4,7 @@ function addImageServer(imagingStudy, series, instance) {
     var instanceUid = getUid(instance.uid);
     loadTemplate('imageServer.html', function(imageElement)
     {
-        $('#imageList').append(imageElement);
+        $('#imageView').append(imageElement);
         var imageIdRoot = config.wadoUriRoot;
         var imageId = imageIdRoot + '?requestType=WADO&studyUID=' + studyUid + '&seriesUID=' + seriesUid + '&objectUID=' + instanceUid + "&columns=256&rows=256";
         var img = $(imageElement).find('img')[0];

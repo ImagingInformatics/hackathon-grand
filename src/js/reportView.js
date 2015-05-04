@@ -22,8 +22,6 @@ function loadImagingStudy(acc) {
 }
 
 function reportViewInit(reportUrl) {
-    $('#reportViewInner').empty();
-    $('#imageList').empty();
     $.ajax({
         url: reportUrl,
         headers: {
@@ -31,8 +29,8 @@ function reportViewInit(reportUrl) {
         },
         success: function(data) {
             console.log(data);
-            var reportText = $.parseHTML(data.text.div);
-            $("#reportViewInner").append(reportText);
+            displayReportText(data);
+
             var acc = data.identifier ? data.identifier.value : undefined;
             if(acc) {
                 loadImagingStudy(acc);
@@ -42,5 +40,4 @@ function reportViewInit(reportUrl) {
             alert('error');
         }
     });
-
 }

@@ -10,8 +10,8 @@ and imaging study resources.  Images are displayed using DICOMweb APIs.
 
 [Click here to view this application live in your web browser!](http://imaginginformatics.github.io/hackathon-grand/)
 
-Build and hacking
-=================
+Building
+========
 
 Pre-requisites
 ---------------
@@ -50,7 +50,7 @@ Automatically running the build and unit tests after each source change:
 > grunt watch
 
 Hacking
--------
+=======
 
 Hacking on this project only requires knowledge of HTML, CSS, JavaScript, jQuery and bootstrap.  The project uses the
 [cornerstone library](https://github.com/chafey/cornerstone) for client side rendering which should make it easier
@@ -59,14 +59,27 @@ to hack new imaging specific functionality.
 I created a [blog post](http://chafey.blogspot.com/2015/04/siim-2015-hackathon-grand-challenge.html) about how
 I built this project that should help explain how things work a bit.
 
-Want to make this project better?  Here are some things we could use help on:
-
-* Visual Appearance - no effort has been put into the visual design - feel free to make it look better!  Just make sure
-  you don't work against the design of bootstrap
-* TODO's - There are various TODO's sprinkled throughout the code - find one and fix it!
-* Add more powerful search functionality to the patient search screen
-* Adding more info from FHIR (e.g. Allergies, FamilyHistory, Medications, etc)
-
 NOTE: Please avoid adding dependencies on other third party libraries such as angular, etc.  We want to keep the
 learning curve as low as possible to make it easy for people to get started hacking!
+
+Hacking Ideas
+-------------
+
+* Improve the visual design (colors, appearance)
+* Add a screen to show the list of ImagingStudies for a patient
+* Add a screen to create a new DiagnosticOrder for a patient (e.g. new order or follow-up)
+* Add a screen to create a new DiagnosticReport for a Patient/DiagnosticOrder/ImagingStudy
+* Add a combo box to allow user to select between different ImagingStudyies for a DiagnosticOrder
+* Add additional patient search functionality (birthdate, first name, ?)
+* Add more FHIR resources (DiagnosticOrder, Allergies, FamilyHistory, Medications)
+* Add ability to filter DiagnosticReports by type (Radiology vs Pathology vs both)
+* Create clinically correct DICOM PR, KO and SR instances for the datasets
+* Add a date/time formatter and apply it to the report list
+* Improve the display of key images
+* Parse the report text for image references and make it interactive in some way (image as popover?)
+* Add dictionaries for freely available codes like LOINC, etc
+* Add ability to show patient's picture/photo
+* Add picture/photo for each patient to the FHIR dataset
+* Add mini "Study Viewer" that shows all images for an ImagingStudy (e.g. like [cornerstoneDemo](https://github.com/chafey/cornerstoneDemo)
+* Add support for displaying DICOM PR, KO and SR
 
